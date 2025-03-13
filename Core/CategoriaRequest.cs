@@ -10,4 +10,10 @@ public class CategoriaRequest
             Nome = Nome
         };
     }
+
+    public Categoria AtualizarCategoria(int id, Categoria categoria)
+    {
+        categoria.Nome = Nome;
+        return categoria;
+    }
 }

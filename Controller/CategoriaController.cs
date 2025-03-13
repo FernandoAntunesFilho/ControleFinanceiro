@@ -22,4 +22,16 @@ public class CategoriaController : Controller
 
         return Ok(novaCategoria);
     }
+
+    [HttpPut]
+    [Route("categoria")]
+    public IActionResult PutCategoria(int id, CategoriaRequest request)
+    {
+        var categoria = CategoriaRepository.Categorias.FirstOrDefault(c => c.Id == id);
+        if (categoria == null) return NotFound("Categoria não encontrada");
+
+        var categoriaAtualizada = request.AtualizarCategoria(id, categoria);
+
+        return Ok(categoriaAtualizada);
+    }
 }
