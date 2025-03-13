@@ -11,4 +11,15 @@ public class CategoriaController : Controller
     {
         return Ok(CategoriaRepository.Categorias);
     }
+
+    [HttpPost]
+    [Route("categoria")]
+    public IActionResult PostCategoria(CategoriaRequest request)
+    {
+        var novaCategoria = request.CriarCategoria(_nextId++);
+
+        CategoriaRepository.Categorias.Add(novaCategoria);
+
+        return Ok(novaCategoria);
+    }
 }

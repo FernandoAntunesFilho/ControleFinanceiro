@@ -31,3 +31,4 @@ C:\Users\ferna\OneDrive\Documentos\Projetos\ControleFinanceiro\obj\Debug\net8.0\
 C:\Users\ferna\OneDrive\Documentos\Projetos\ControleFinanceiro\obj\Debug\net8.0\ControleFinanceiro.pdb
 C:\Users\ferna\OneDrive\Documentos\Projetos\ControleFinanceiro\obj\Debug\net8.0\ControleFinanceiro.genruntimeconfig.cache
 C:\Users\ferna\OneDrive\Documentos\Projetos\ControleFinanceiro\obj\Debug\net8.0\ref\ControleFinanceiro.dll
+C:\Users\ferna\OneDrive\Documentos\Projetos\ControleFinanceiro\obj\Debug\net8.0\ControleFinanceiro.sourcelink.json
