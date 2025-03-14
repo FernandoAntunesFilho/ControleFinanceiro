@@ -1,7 +1,7 @@
 public class ContaRequest
 {
     public string? Name { get; set; }
-    public decimal Saldo { get; set; }
+    public decimal SaldoInicial { get; set; }
     public bool Ativo { get; set; }
 
     public Conta CriarConta(int id)
@@ -10,7 +10,7 @@ public class ContaRequest
         {
             Id = id,
             Name = Name,
-            Saldo = Saldo,
+            SaldoInicial = SaldoInicial,
             Ativo = Ativo
         };
     }
@@ -18,7 +18,7 @@ public class ContaRequest
     public Conta AlterarConta(Conta conta)
     {
         conta.Name = Name;
-        conta.Saldo = Saldo;
+        conta.SaldoInicial = SaldoInicial;
         conta.Ativo = Ativo;
 
         return conta;
