@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uvgFWkxPBz0=",
+  "dgSpecHash": "GsuGt9qljWc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
+  "projectFilePath": "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ferna\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.12\\microsoft.aspnetcore.openapi.8.0.12.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
