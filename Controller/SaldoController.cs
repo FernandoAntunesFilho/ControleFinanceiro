@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class SaldoController : Controller
 {
-    //private List<Saldo> _saldos = new();
-
     [HttpGet]
     [Route("transacoes/saldos")]
     public IActionResult GetSaldoTransacoes(int mes, int ano, int contaId)
@@ -16,22 +14,21 @@ public class SaldoController : Controller
         var saldoInicial = conta.SaldoInicial;
 
         var saldos = TransacaoRepository.Transacoes
-        .Where(t => t.Conta != null && t.Conta.Id == contaId) // Filtra pelo ID da conta
-        .GroupBy(t => t.Data.Date) // Agrupa por data, ignorando a hora
+        .Where(t => t.Conta != null && t.Conta.Id == contaId)
+        .GroupBy(t => t.Data.Date)
         .Select(g => new Saldo
         {
             Data = g.Key,
-            SaldoDia = g.Sum(t => t.Valor) // Soma os valores das transações do dia
+            SaldoDia = g.Sum(t => t.Valor)
         })
-        .OrderBy(s => s.Data) // Ordena por data para garantir a sequência correta
+        .OrderBy(s => s.Data)
         .ToList();
-
-        // Aplicando o saldo acumulado
+        
         decimal saldoAcumulado = saldoInicial;
         foreach (var saldo in saldos)
         {
             saldoAcumulado += saldo.SaldoDia;
-            saldo.SaldoDia = saldoAcumulado; // Atualiza o SaldoDia com o acumulado
+            saldo.SaldoDia = saldoAcumulado;
         }
 
         var ultimoDia = DateTime.DaysInMonth(ano, mes);
