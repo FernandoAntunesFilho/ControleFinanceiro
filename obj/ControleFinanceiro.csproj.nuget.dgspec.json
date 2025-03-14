@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj": {}
+    "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj": {
+    "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
+        "projectUniqueName": "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
         "projectName": "ControleFinanceiro",
-        "projectPath": "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
+        "projectPath": "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\ControleFinanceiro.csproj",
         "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\obj\\",
+        "outputPath": "c:\\Users\\ferna\\OneDrive\\Documentos\\Projetos\\ControleFinanceiro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config"

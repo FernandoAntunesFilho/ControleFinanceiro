@@ -4,12 +4,28 @@ using Microsoft.AspNetCore.Mvc;
 public class ContaController : Controller
 {
     private static int _nextId = 1;
-    
+    private static List<ContaResponse> _contasResponse = new();
+
     [HttpGet]
     [Route("contas")]
     public IActionResult GetContas()
     {
-        return StatusCode(200, ContaRepository.Contas);
+        _contasResponse.Clear();
+        foreach (var conta in ContaRepository.Contas)
+        {
+            var valorTransacoes = TransacaoRepository.Transacoes
+            .Where(t => t.Conta != null && t.Conta.Id == conta.Id && t.Data.Date <= DateTime.Now.Date)
+            .Sum(t => t.Valor);
+
+            _contasResponse.Add(new ContaResponse
+            {
+                Conta = conta,
+                SaldoAtual = conta.SaldoInicial + valorTransacoes
+            });
+        }
+
+
+        return StatusCode(200, _contasResponse);
     }
 
     [HttpPost]
