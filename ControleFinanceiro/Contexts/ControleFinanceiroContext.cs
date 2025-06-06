@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControleFinanceiro.Contexts
 {
-    public class ControleFinanceiroContext : DbContext
+    public class ControleFinanceiroContext : DbContext, IControleFinanceiroContext
     {
         public ControleFinanceiroContext(DbContextOptions<ControleFinanceiroContext> options) : base(options) { }
 

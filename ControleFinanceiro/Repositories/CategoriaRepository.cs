@@ -6,8 +6,8 @@ namespace ControleFinanceiro.Repositories
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        private readonly ControleFinanceiroContext _context;
-        public CategoriaRepository(ControleFinanceiroContext context)
+        private readonly IControleFinanceiroContext _context;
+        public CategoriaRepository(IControleFinanceiroContext context)
         {
             _context = context;
         }

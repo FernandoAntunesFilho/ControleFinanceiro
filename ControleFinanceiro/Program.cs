@@ -16,6 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ControleFinanceiroContext>(options => options.UseMySql(connectionString,
     new MySqlServerVersion(new Version(8, 0, 41))));
 
+builder.Services.AddScoped<IControleFinanceiroContext, ControleFinanceiroContext>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 
