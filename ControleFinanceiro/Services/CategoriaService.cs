@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Models;
+﻿using ControleFinanceiro.DTOs;
+using ControleFinanceiro.Models;
 using ControleFinanceiro.Repositories;
 
 namespace ControleFinanceiro.Services
@@ -7,15 +8,23 @@ namespace ControleFinanceiro.Services
     {
         private readonly ICategoriaRepository _repository;
         private const string CategoriaNotFoundMessage = "Categoria não encontrada.";
+        private const string CategoriaNameRequiredMessage = "O nome da categoria é obrigatório.";
 
         public CategoriaService(ICategoriaRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<int> AddAsync(Categoria categoria)
+        public async Task<int> AddAsync(CategoriaRequestDTO categoria)
         {
-            return await _repository.Add(categoria);
+            if (string.IsNullOrWhiteSpace(categoria.Nome)) throw new Exception(CategoriaNameRequiredMessage);
+
+            var novaCategoria = new Categoria
+            {
+                Nome = categoria.Nome
+            };
+
+            return await _repository.Add(novaCategoria);
         }
 
         public async Task<int> DeleteAsync(int id)
@@ -33,6 +42,8 @@ namespace ControleFinanceiro.Services
 
         public async Task<int> UpdateAsync(Categoria categoria)
         {
+            if (string.IsNullOrWhiteSpace(categoria.Nome)) throw new Exception(CategoriaNameRequiredMessage);
+
             var categoriaAtual = await _repository.GetById(categoria.Id);
             if (categoriaAtual is null) throw new Exception(CategoriaNotFoundMessage);
 
