@@ -8,5 +8,6 @@ namespace ControleFinanceiro.Contexts
         public ControleFinanceiroContext(DbContextOptions<ControleFinanceiroContext> options) : base(options) { }
 
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Conta> Contas { get; set; }
     }
 }
