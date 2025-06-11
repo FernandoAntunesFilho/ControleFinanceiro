@@ -9,5 +9,6 @@ namespace ControleFinanceiro.Contexts
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Conta> Contas { get; set; }
+        public DbSet<Transacao> Transacoes { get; set; }
     }
 }
