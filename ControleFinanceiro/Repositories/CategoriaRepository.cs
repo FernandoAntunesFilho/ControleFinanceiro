@@ -29,9 +29,9 @@ namespace ControleFinanceiro.Repositories
             return await _context.Categorias.ToListAsync();
         }
 
-        public Task<Categoria?> GetById(int id)
+        public async Task<Categoria?> GetById(int id)
         {
-            return _context.Categorias.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Categorias.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<int> Update(Categoria categoria)

@@ -2,43 +2,44 @@
 using ControleFinanceiro.DTOs;
 using ControleFinanceiro.Models;
 using ControleFinanceiro.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 namespace ControleFinanceiro.Test.Controllers
 {
-    public class CategoriaControllerTest
+    public class ContaControllerTest
     {
-        private readonly Mock<ICategoriaService> _serviceMock;
-        private readonly CategoriaController _controller;
+        private readonly Mock<IContaService> _serviceMock;
+        private readonly ContaController _controller;
 
-        public CategoriaControllerTest()
+        public ContaControllerTest()
         {
-            _serviceMock = new Mock<ICategoriaService>();
-            _controller = new CategoriaController(_serviceMock.Object);
+            _serviceMock = new Mock<IContaService>();
+            _controller = new ContaController(_serviceMock.Object);
         }
 
         [Fact]
-        public async Task GetAll_RetornoDeveSerOKComListaDeCategorias()
+        public async Task GetAll_RetornoDeveSerOKComListaDeContas()
         {
             // Arrange
-            var categorias = new List<Categoria>
+            var contas = new List<Conta>
             {
-                new Categoria
+                new Conta
                 {
                     Id = 1,
-                    Nome = "Categoria"
+                    Nome = "Conta A",
+                    ValorInicial = 10,
+                    Ativo = true
                 }
             };
-            _serviceMock.Setup(s => s.GetAllAsync()).ReturnsAsync(categorias);
+            _serviceMock.Setup(s => s.GetAllAsync()).ReturnsAsync(contas);
 
             // Act
             var result = await _controller.GetAll();
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnValue = Assert.IsAssignableFrom<IEnumerable<Categoria>>(okResult.Value);
+            var returnValue = Assert.IsAssignableFrom<IEnumerable<Conta>>(okResult.Value);
             Assert.Single(returnValue);
         }
 
@@ -62,15 +63,17 @@ namespace ControleFinanceiro.Test.Controllers
         public async Task Add_RetornoDeveSerCreated()
         {
             // Arrange
-            var categoriaCriada = 1;
-            var novaCategoria = new CategoriaRequestDTO
+            var contaCriada = 1;
+            var novaConta = new ContaRequestDTO
             {
-                Nome = "Nova Categoria"
+                Nome = "Nova Conta",
+                ValorInicial = 10,
+                Ativo = true
             };
-            _serviceMock.Setup(s => s.AddAsync(It.IsAny<CategoriaRequestDTO>())).ReturnsAsync(categoriaCriada);
+            _serviceMock.Setup(s => s.AddAsync(It.IsAny<ContaRequestDTO>())).ReturnsAsync(contaCriada);
 
             // Act
-            var result = await _controller.Add(novaCategoria);
+            var result = await _controller.Add(novaConta);
 
             // Assert
             Assert.IsType<CreatedResult>(result);
@@ -80,14 +83,16 @@ namespace ControleFinanceiro.Test.Controllers
         public async Task Add_SeExcessaoDeveRetornarBadRequest()
         {
             // Arrange
-            var novaCategoria = new CategoriaRequestDTO
+            var novaConta = new ContaRequestDTO
             {
-                Nome = "Nova Categoria"
+                Nome = "Nova Conta",
+                ValorInicial = 10,
+                Ativo = true
             };
-            _serviceMock.Setup(s => s.AddAsync(It.IsAny<CategoriaRequestDTO>())).ThrowsAsync(new Exception("Erro"));
+            _serviceMock.Setup(s => s.AddAsync(It.IsAny<ContaRequestDTO>())).ThrowsAsync(new Exception("Erro"));
 
             // Act
-            var result = await _controller.Add(novaCategoria);
+            var result = await _controller.Add(novaConta);
 
             // Assert
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
@@ -100,36 +105,40 @@ namespace ControleFinanceiro.Test.Controllers
         public async Task Update_RetornoDeveSerOk()
         {
             // Arrange
-            var categoriaAtualizada = 1;
-            var novaCategoria = new Categoria
+            var contaAtualizada = 1;
+            var novaConta = new Conta
             {
                 Id = 1,
-                Nome = "Nova Categoria"
+                Nome = "Nova Conta",
+                ValorInicial = 10,
+                Ativo = true
             };
-            _serviceMock.Setup(s => s.UpdateAsync(It.IsAny<Categoria>())).ReturnsAsync(categoriaAtualizada);
+            _serviceMock.Setup(s => s.UpdateAsync(It.IsAny<Conta>())).ReturnsAsync(contaAtualizada);
 
             // Act
-            var result = await _controller.Update(novaCategoria);
+            var result = await _controller.Update(novaConta);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsAssignableFrom<int>(okResult.Value);
-            Assert.Equal(categoriaAtualizada, returnValue);
+            Assert.Equal(contaAtualizada, returnValue);
         }
 
         [Fact]
         public async Task Update_SeExcessaoDeveRetornarBadRequest()
         {
             // Arrange
-            var novaCategoria = new Categoria
+            var novaConta = new Conta
             {
                 Id = 1,
-                Nome = "Nova Categoria"
+                Nome = "Nova Conta",
+                ValorInicial = 10,
+                Ativo = true
             };
-            _serviceMock.Setup(s => s.UpdateAsync(It.IsAny<Categoria>())).ThrowsAsync(new Exception("Erro"));
+            _serviceMock.Setup(s => s.UpdateAsync(It.IsAny<Conta>())).ThrowsAsync(new Exception("Erro"));
 
             // Act
-            var result = await _controller.Update(novaCategoria);
+            var result = await _controller.Update(novaConta);
 
             // Assert
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
@@ -142,12 +151,12 @@ namespace ControleFinanceiro.Test.Controllers
         public async Task Delete_RetornoDeveSerNocontent()
         {
             // Arrange
-            var categoriaApagada = 1;
-            var categoriaId = 2;
-            _serviceMock.Setup(s => s.DeleteAsync(It.IsAny<int>())).ReturnsAsync(categoriaApagada);
+            var contaApagada = 1;
+            var contaId = 2;
+            _serviceMock.Setup(s => s.DeleteAsync(It.IsAny<int>())).ReturnsAsync(contaApagada);
 
             // Act
-            var result = await _controller.Delete(categoriaId);
+            var result = await _controller.Delete(contaId);
 
             // Assert
             var okResult = Assert.IsType<NoContentResult>(result);
@@ -157,11 +166,11 @@ namespace ControleFinanceiro.Test.Controllers
         public async Task Delete_SeExcessaoDeveRetornarBadRequest()
         {
             // Arrange
-            var categoriaId = 2;
+            var contaId = 2;
             _serviceMock.Setup(s => s.DeleteAsync(It.IsAny<int>())).ThrowsAsync(new Exception("Erro"));
 
             // Act
-            var result = await _controller.Delete(categoriaId);
+            var result = await _controller.Delete(contaId);
 
             // Assert
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);

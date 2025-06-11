@@ -7,10 +7,10 @@ namespace ControleFinanceiro.Controllers
 {
     [ApiController]
     [Route("v1/[controller]")]
-    public class CategoriaController : ControllerBase
+    public class ContaController : ControllerBase
     {
-        private readonly ICategoriaService _service;
-        public CategoriaController(ICategoriaService service)
+        private readonly IContaService _service;
+        public ContaController(IContaService service)
         {
             _service = service;
         }
@@ -20,8 +20,8 @@ namespace ControleFinanceiro.Controllers
         {
             try
             {
-                var categorias = await _service.GetAllAsync();
-                return Ok(categorias);
+                var result = await _service.GetAllAsync();
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -30,7 +30,7 @@ namespace ControleFinanceiro.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CategoriaRequestDTO request)
+        public async Task<IActionResult> Add([FromBody] ContaRequestDTO request)
         {
             try
             {
@@ -44,11 +44,11 @@ namespace ControleFinanceiro.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Categoria categoria)
+        public async Task<IActionResult> Update([FromBody] Conta request)
         {
             try
             {
-                var result = await _service.UpdateAsync(categoria);
+                var result = await _service.UpdateAsync(request);
                 return Ok(result);
             }
             catch (Exception ex)
