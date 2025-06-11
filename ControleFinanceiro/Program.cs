@@ -19,6 +19,8 @@ builder.Services.AddDbContext<ControleFinanceiroContext>(options => options.UseM
 builder.Services.AddScoped<IControleFinanceiroContext, ControleFinanceiroContext>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<IContaRepository, ContaRepository>();
+builder.Services.AddScoped<IContaService, ContaService>();
 
 var app = builder.Build();
 

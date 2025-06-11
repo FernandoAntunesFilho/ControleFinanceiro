@@ -139,7 +139,7 @@ namespace ControleFinanceiro.Test.Controllers
         }
 
         [Fact]
-        public async Task Delete_RetornoDeveSerOk()
+        public async Task Delete_RetornoDeveSerNocontent()
         {
             // Arrange
             var categoriaApagada = 1;
@@ -150,9 +150,7 @@ namespace ControleFinanceiro.Test.Controllers
             var result = await _controller.Delete(categoriaId);
 
             // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnValue = Assert.IsAssignableFrom<int>(okResult.Value);
-            Assert.Equal(categoriaApagada, returnValue);
+            var okResult = Assert.IsType<NoContentResult>(result);
         }
 
         [Fact]
