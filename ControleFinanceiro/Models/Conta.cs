@@ -9,5 +9,7 @@ namespace ControleFinanceiro.Models
         public string? Nome { get; set; }
         public decimal ValorInicial { get; set; }
         public bool Ativo {  get; set; }
+
+        public ICollection<Transacao>? Transacoes { get; set; }
     }
 }
