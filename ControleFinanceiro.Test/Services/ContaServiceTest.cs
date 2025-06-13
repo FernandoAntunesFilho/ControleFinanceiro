@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Models.Entities;
+﻿using ControleFinanceiro.Models.DTOs;
+using ControleFinanceiro.Models.Entities;
 using ControleFinanceiro.Repositories;
 using ControleFinanceiro.Services;
 using Moq;
