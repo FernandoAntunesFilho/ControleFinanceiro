@@ -1,6 +1,6 @@
 ﻿using ControleFinanceiro.Controllers;
-using ControleFinanceiro.DTOs;
-using ControleFinanceiro.Models;
+using ControleFinanceiro.Models.DTOs;
+using ControleFinanceiro.Models.Entities;
 using ControleFinanceiro.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

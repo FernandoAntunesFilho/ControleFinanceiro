@@ -1,5 +1,5 @@
-﻿using ControleFinanceiro.DTOs;
-using ControleFinanceiro.Models;
+﻿using ControleFinanceiro.Models.DTOs;
+using ControleFinanceiro.Models.Entities;
 
 namespace ControleFinanceiro.Services
 {

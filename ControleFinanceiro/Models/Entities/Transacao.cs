@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ControleFinanceiro.Models
+namespace ControleFinanceiro.Models.Entities
 {
     public class Transacao
     {

@@ -1,4 +1,4 @@
-﻿using ControleFinanceiro.Models;
+﻿using ControleFinanceiro.Models.Entities;
 
 namespace ControleFinanceiro.Repositories
 {

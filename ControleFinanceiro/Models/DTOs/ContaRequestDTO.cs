@@ -1,4 +1,4 @@
-﻿namespace ControleFinanceiro.DTOs
+﻿namespace ControleFinanceiro.Models.DTOs
 {
     public class ContaRequestDTO
     {

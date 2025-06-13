@@ -1,4 +1,4 @@
-﻿using ControleFinanceiro.Models;
+﻿using ControleFinanceiro.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleFinanceiro.Contexts
