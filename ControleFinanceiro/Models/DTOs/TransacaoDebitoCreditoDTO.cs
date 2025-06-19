@@ -4,7 +4,7 @@
     {
         public DateTime DataOriginal { get; set; }
         public string? Descricao { get; set; }
-        public char? TipoTransacao { get; set; }
+        public int TipoTransacao { get; set; }
         public int CategoriaId { get; set; }
     }
 }

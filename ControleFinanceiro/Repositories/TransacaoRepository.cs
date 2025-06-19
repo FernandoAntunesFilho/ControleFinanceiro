@@ -42,9 +42,9 @@ namespace ControleFinanceiro.Repositories
             }
         }
 
-        public async Task<int> DeleteDebitoCredito(Transacao transacao)
+        public async Task<int> DeleteDebitoCredito(List<Transacao> transacoes)
         {
-            _context.Transacoes.Remove(transacao);
+            _context.Transacoes.RemoveRange(transacoes);
             return await _context.SaveChangesAsync();
         }
 
@@ -74,11 +74,24 @@ namespace ControleFinanceiro.Repositories
             return await _context.Transacoes.FirstOrDefaultAsync(t => t.Id == id);
         }
 
+        public async Task<List<Transacao>> GetByTransferenciaId(Guid transferenciaId)
+        {
+            return await _context.Transacoes.Where(t => t.TransferenciaId == transferenciaId).ToListAsync();
+        }
+
         public async Task<List<Transacao>> GetDebitoCredito(DateTime dataInicio, DateTime dataFim)
         {
             return await _context.Transacoes.Where(t => t.Data.Date >= dataInicio.Date &&
                                                         t.Data.Date <= dataFim &&
                                                         t.TipoTransacao != ((int)TipoTransacaoEnum.Transferencia))
+                .ToListAsync();
+        }
+
+        public async Task<List<Transacao>> GetTransferencia(DateTime dataInicio, DateTime dataFim)
+        {
+            return await _context.Transacoes.Where(t => t.Data.Date >= dataInicio.Date &&
+                                                        t.Data.Date <= dataFim &&
+                                                        t.TipoTransacao == ((int)TipoTransacaoEnum.Transferencia))
                 .ToListAsync();
         }
 
@@ -97,14 +110,6 @@ namespace ControleFinanceiro.Repositories
                         DataTransacao = dataFim,
                         Consolidada = false
                     })
-                .ToListAsync();
-        }
-
-        public async Task<List<Transacao>> GetTransferencia(DateTime dataInicio, DateTime dataFim)
-        {
-            return await _context.Transacoes.Where(t => t.Data.Date >= dataInicio.Date &&
-                                                        t.Data.Date <= dataFim &&
-                                                        t.TipoTransacao == ((int)TipoTransacaoEnum.Transferencia))
                 .ToListAsync();
         }
 
