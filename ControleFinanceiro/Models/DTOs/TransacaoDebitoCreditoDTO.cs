@@ -1,6 +1,6 @@
 ﻿namespace ControleFinanceiro.Models.DTOs
 {
-    public class TransacaoDebitoCreditoDTO : TransacaoSaldoAnteriorDTO
+    public class TransacaoDebitoCreditoDTO : TransacaoBaseDTO
     {
         public DateTime DataOriginal { get; set; }
         public string? Descricao { get; set; }

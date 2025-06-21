@@ -97,20 +97,22 @@ namespace ControleFinanceiro.Repositories
 
         public async Task<List<TransacaoSaldoAnteriorDTO>> GetSaldoAnterior(DateTime dataFim)
         {
-            return await _context.Transacoes
-                .Where(t => t.Data.Date <= dataFim.Date)
-                .GroupBy(t => t.ContaId)
-                .Join(_context.Contas,
-                    g => g.Key,
-                    conta => conta.Id,
-                    (g, conta) => new TransacaoSaldoAnteriorDTO
-                    {
-                        ContaId = conta.Id,
-                        Valor = g.Sum(t => t.Valor),
-                        DataTransacao = dataFim,
-                        Consolidada = false
-                    })
+            var resultado = await _context.Contas
+                .GroupJoin(
+                _context.Transacoes.Where(t => t.Data <= dataFim),
+                conta => conta.Id,
+                transacao => transacao.ContaId,
+                (conta, transacoes) => new TransacaoSaldoAnteriorDTO
+                {
+                    Id = conta.Id * -1,
+                    ContaId = conta.Id,
+                    Valor = transacoes.Sum(t => t.Valor),
+                    DataTransacao = dataFim,
+                    Consolidada = true
+                })
                 .ToListAsync();
+
+            return resultado;
         }
 
         public async Task<int> UpdateDebitoCredito(Transacao transacao)
